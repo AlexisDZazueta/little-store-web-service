@@ -7,16 +7,19 @@ const getUsers = (req, res) => {
   User.find({ }, (err, users) => {
     if (err) {
       return res.status(500).send({
+        status: 500,
         message: `Server error ${err}`
       })
     }
     if (users.length <= 0) {
       return res.status(404).send({
+        status: 404,
         message: `There are no users`
       })
     }
 
     res.status(200).send({
+      status: 200,
       users
     })
   })
