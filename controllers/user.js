@@ -33,11 +33,13 @@ const signUp = (req, res) => {
   user.save(err => {
     if (err) {
       return res.status(500).send({ 
+        status: 500,
         message: `Server error: ${err}` 
       })
     }
 
     res.status(201).send({ 
+      status: 201,
       message: `You have sign up successfully`, 
       token: service.createToken(user)
     })
@@ -48,17 +50,20 @@ const signIn = (req, res) => {
   User.find({ email: req.body.email, password: req.body.password }, (err, user) => {
     if (err) {
       return res.status(500).send({
+        status: 500,
         message: `Server error: ${err}`
       })
     }
     if (user.length <= 0) {
       return res.status(404).send({
+        status: 404,
         message: `User not found or not exist`
       })
     }
 
     req.user = user
     res.status(200).send({
+      status: 200,
       message: `You have sign in successfully`, 
       token: service.createToken(user)
     })

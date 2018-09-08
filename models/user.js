@@ -25,7 +25,7 @@ UserSchema.pre('save', next => {
       }
 
       user.password = hash
-      next()
+      return next()
     })
   })
 })
