@@ -4,7 +4,7 @@ const jwt = require('jwt-simple')
 const moment = require('moment')
 const config = require('../config')
 
-createToken = (user) => {
+const createToken = (user) => {
   const payload = {
     sub: user._id,
     iat: moment().unix(),
@@ -14,7 +14,7 @@ createToken = (user) => {
   return jwt.encode(payload, config.SECRET_TOKEN)
 }
 
-decodeToken = (token) => {
+const decodeToken = (token) => {
   const decoded = new Promise((resolve, reject) => {
     try {
       const payload = jwt.decode(token, config.SECRET_TOKEN)
@@ -34,7 +34,7 @@ decodeToken = (token) => {
       })
     }
   })
-
+  
   return decoded
 }
 

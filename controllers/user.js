@@ -3,10 +3,29 @@
 const User = require('../models/user')
 const service = require('../services')
 
-signUp = (req, res) => {
+const getUsers = (req, res) => {
+  User.find({ }, (err, users) => {
+    if (err) {
+      return res.status(500).send({
+        message: `Server error ${err}`
+      })
+    }
+    if (users.length <= 0) {
+      return res.status(404).send({
+        message: `There are no users`
+      })
+    }
+
+    res.status(200).send({
+      users
+    })
+  })
+}
+
+const signUp = (req, res) => {
   const user = new User({
     email: req.body.email,
-    pass: req.body.pass,
+    password: req.body.password,
     firstName: req.body.firstName,
     lastName: req.body.lastName
   })
@@ -25,14 +44,14 @@ signUp = (req, res) => {
   })
 }
 
-signIn = (req, res) => {
-  User.find({ email: req.body.email }, (err, user) => {
+const signIn = (req, res) => {
+  User.find({ email: req.body.email, password: req.body.password }, (err, user) => {
     if (err) {
       return res.status(500).send({
         message: `Server error: ${err}`
       })
     }
-    if (!user) {
+    if (user.length <= 0) {
       return res.status(404).send({
         message: `User not found or not exist`
       })
@@ -47,6 +66,7 @@ signIn = (req, res) => {
 }
 
 module.exports = {
+  getUsers,
   signUp,
   signIn
 }

@@ -6,7 +6,7 @@ const Schema = mongoose.Schema
 
 const UserSchema = new Schema({
   email: { type: String, required: true, unique: true },
-  pass: { type: String, required: true  },
+  password: { type: String, required: true, select: false },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true }
 }, { timestamps: true })
@@ -19,13 +19,15 @@ UserSchema.pre('save', next => {
       return next(err)
     }
 
-    bcrypt.hash(user.pass, salt, null, (err, hash) => {
+    bcrypt.hash(user.password, salt, null, (err, hash) => {
       if (err) {
         return next(err)
       }
 
-      user.pass = hash
+      user.password = hash
       next()
     })
   })
 })
+
+module.exports = mongoose.model('User', UserSchema)

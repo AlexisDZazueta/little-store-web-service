@@ -4,7 +4,8 @@ const mongoose = require('mongoose')
 const app = require('./app')
 const config = require('./config')
 
-mongoose.connect(config.db, (err, res) => {
+mongoose.set('useCreateIndex', true)
+mongoose.connect(config.db, { useNewUrlParser: true }, (err, res) => {
   if (err) {
     return console.log(`Database connection: ${err}`)
   }

@@ -2,7 +2,7 @@
 
 const services = require('../services')
 
-isAuth = (req, res, next) => {
+const isAuth = (req, res, next) => {
   if (!req.headers.authorization) {
     return res.status(403).send({ message: 'You are not authorized' })
   }

@@ -6,6 +6,7 @@ const api = express.Router()
 
 const userCtrl = require('../controllers/user')
 
+api.get('/users', auth, userCtrl.getUsers)
 api.post('/signup', userCtrl.signUp)
 api.post('/signin', userCtrl.signIn)
 
