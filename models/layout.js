@@ -11,9 +11,10 @@ const LayoutSchema = new Schema({
     type: { type: String, maxlength: 2, required: true },
     refn: { type: String, maxlength: 7},
     refa: { type: String, maxlength: 20, required: true },
-    amount: { type: String, maxlength: 100 },
     bank: { type: String, maxlength: 5, required: true },
     country: { type: String, maxlength: 2, required: true },
-    
+    currency: { type: String, maxlength: 3, required: true }
   }]
 }, { timestamps: true })
+
+module.exports = mongoose.model('Layout', LayoutSchema)
