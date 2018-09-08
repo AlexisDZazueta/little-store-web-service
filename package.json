@@ -1,0 +1,30 @@
+{
+  "name": "little-store-web-service",
+  "version": "1.0.0",
+  "description": "A web service to provide functionality to the project application and the website",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexisDZazueta/little-store-web-service.git"
+  },
+  "author": "Alexis D. Zazueta (alexisd.zazueta@gmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlexisDZazueta/little-store-web-service/issues"
+  },
+  "homepage": "https://github.com/AlexisDZazueta/little-store-web-service#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "express-promise-router": "^3.0.3",
+    "joi": "^13.6.0",
+    "jwt-simple": "^0.5.1",
+    "mongoose": "^5.2.13"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}
